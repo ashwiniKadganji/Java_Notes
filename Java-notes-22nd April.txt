@@ -1,0 +1,642 @@
+################################
+Core Java - Pankaj Sir Academy
+###############################
+
+What is a class?
+-> Class helps us to create object in java
+-> In java we use class keyword to create class.
+-> Keyword should be in lower case
+Example :
+
+class A {
+
+}
+-> We define the boundary of class using flower brackets
+
+Class Naming Convention
+#######################
+-> Class name should always start with upper case
+-> If the class has more than one work then use camel casing. that is
+first letter of every word should be in upper case
+
+Example: Correct
+-------
+class Bank {
+
+}
+Example: Correct
+-------
+class BankAccountNumber {
+
+}
+Example: InCorrect
+-------
+class Bank Account Number {
+
+}
+
+Example:
+----------
+-> Snake Casing-->Should not use for java
+-> Will Execute without any error
+
+public class Bank_Account_Number {
+ 
+}
+
+Example: Class name cannot start with a number
+----------------------------------------------
+-> Will give error
+public class 1Bank {
+  public static void main(String[] args){
+     
+  }
+}
+
+Example:Class name can start with a character follwed by Number
+---------
+public class Bank1 {
+  public static void main(String[] args){
+     
+  }
+}
+
+Note:
+1. Donot use specials characters like #,@ % & etc while creating class
+2. $Class name will execute. But never create a class with special character $
+
+Example:Correct, but not recommended
+___________
+public class $A {
+	public static void main(String[] args) {
+	
+	}
+}
+
+Example: For Creating objects in java
+---------------------------------------
+
+public class A {
+  public static void main(String[] args){
+     A a1 = new A();
+     A a2 = new A();
+     System.out.println(a1);
+     System.out.println(a2);
+  }
+}
+
+new keyword:
+##############
+
+-> Using new keyword we send request to class to create object
+-> Once object is created new keyword will get objects's address and stores that in a reference variable
+
+Syntax to create object:
+-------------------------
+ClassName variableName = new ClassName();
+
+Note:
+-----------------------------------
+Two types of camel casing:
+
+a. Upper Case Camel Casing: Used for naming class, interface, abtract class etc
+b. Lower Case Camel Casing: Used for creating method, variables etc
+_______________________________________________________________________
+
+Non-static Variable/ Instance Variable /Object Variables
+#####################
+1. We should create non static variable inside class outside method without using static keyword
+2. Without creating object we cannot access non static variable
+Example 1:
+-----------
+public class A {
+	int x = 10;
+	public static void main(String[] args) {
+		A a1 = new A();
+		System.out.println(a1.x);
+	}
+}
+Output: 10
+--------------------------------------------------------------------------------
+Example 2:
+----------
+
+public class A {
+	int x = 10;
+	int y = 20;
+	public static void main(String[] args) {
+		A a1 = new A();
+		System.out.println(a1.x);
+		System.out.println(a1.y);
+	}
+}
+Output:
+10
+20
+
+-----------------------------------------------------------------
+3. Every time we create object non-static variable copy is loaded to that object
+4. Copy of variable in these object's are different. That is if you change the value of variable in one object, those changes cannot be seen in another object
+
+Example:
+---------
+
+public class A {
+	int x = 10;
+	public static void main(String[] args) {
+		A a1 = new A();
+		System.out.println(a1.x);//10
+		a1.x = 20;
+		System.out.println(a1.x);//20
+		
+		A a2 = new A();
+		System.out.println(a2.x);//10
+	}
+}
+Output
+10
+20
+10
+
+
+5. It is not mandatory to initialize non-static variable. Depending on data type automatically default value will get stored in it.
+Example:
+---------
+public class A {
+	int x ;
+	public static void main(String[] args) {
+		A a1 = new A();
+		System.out.println(a1.x);
+		
+	}
+}
+
+Ouput: 0
+-----------------------------------------------------------
+
+Static variables:
+#################
+
+1. We should create static variables inside class but outsiude method with static keyword
+2. To access static variable we will use below Options
+a. ClassName.variableName
+b. variableName (Contraints)
+c. objectAddress.variableName (Wrong Appraoch but will work)
+
+Example:
+---------------
+public class A {
+	static int x=10 ;
+	public static void main(String[] args) {
+		System.out.println(A.x);
+		System.out.println(x);
+		
+		//Wrong
+		A a1 = new A();
+		System.out.println(a1.x);//A.x
+	}
+	
+}
+Output
+10
+10
+10
+--------------------------------------------------------------------------
+Example:
+--------
+public class A {
+	static int x=10 ;
+	public static void main(String[] args) {
+		System.out.println(A.x);//10
+		A.x=20;
+		System.out.println(A.x);
+		System.out.println(A.x);
+		A.x = 30;
+		System.out.println(A.x);
+		System.out.println(A.x);
+		
+		
+	}
+	
+}
+-----------------------------------------------------------------------
+
+Types of variables in java
+############################
+
+1. Local Variable
+######################
+a. Local vaiables should be created inside methods
+b. We should use local variable within the created method only
+Example 1:
+---------
+public class A {
+	
+	public static void main(String[] args) {
+		int x = 100;//Created
+		System.out.println(x);//Using
+	}
+	
+}
+Output: 100
+
+Example 2:
+-----------
+public class A {
+	public static void main(String[] args) {
+		int x = 100;//Created
+		System.out.println(x);//Using
+		A a1 = new A();
+		a1.test();
+	}
+	public void test() {
+		System.out.println(x);//Error
+	}
+}
+Output: Error
+
+Example 3:
+----------
+public class A {
+	public static void main(String[] args) {
+		A a1 = new A();
+		a1.test();
+	}
+		
+	public void test() {
+		int x = 100;//Created
+		System.out.println(x);//Correct
+	}
+}
+
+Example 4:
+------------
+public class A {
+	public static void main(String[] args) {
+		A a1 = new A();
+		a1.test();
+		System.out.println(x);//Error
+	}
+		
+	public void test() {
+		int x = 100;//Created
+		System.out.println(x);//Correct
+	}
+}
+
+c. Without initializing if you are using local variable then you will get an error
+Example 5:
+----------
+public class A {
+	public static void main(String[] args) {
+		int x;
+		System.out.println(x);//Error
+	}
+}
+
+Note: Static variable has global access
+Example:
+---------
+public class A {
+	static int y = 10;
+	public static void main(String[] args) {
+		System.out.println(A.y);
+		int x=10;
+		System.out.println(x);
+	}
+	public void test() {
+		System.out.println(A.y);
+		System.out.println(x);
+	}
+}
+
+2. Static variable
+3. Non-static variable / instance variable
+
+4. Reference Variable
+#####################
+a. Can hold either Object address or null value
+Example 1:
+----------
+public class A {
+	
+	public static void main(String[] args) {
+		A a1 = null;
+		A a2 = new A();
+	}
+	
+}
+
+b. Datatype of reference variable is class name
+Example 2: A x;
+
+Example 3:
+In the below example "a1" is created inside main and hence it is a local variable. We cannot access that outside main method
+
+public class A {
+	
+	public static void main(String[] args) {
+		A a1 = new A();
+		System.out.println(a1);
+	}
+	public void test() {
+		System.out.println(a1);//Error
+	}
+	
+}
+
+Example 4:
+Error because "a1" is local variable and not initialized
+
+public class A {
+	
+	public static void main(String[] args) {
+		A a1;
+		System.out.println(a1);//Error
+	}
+	
+	
+}
+Example 5: If we donot initialize static reference variable then by default null value will get stored in it
+
+Example:
+public class A {
+	static A a1;
+	public static void main(String[] args) {
+		System.out.println(a1);
+	}
+	
+	
+}
+
+Example:
+public class A {
+	static A a1;
+	public static void main(String[] args) {
+		System.out.println(a1);
+		a1 = new A();
+		a1.test();
+	}
+	public void test() {
+		System.out.println(a1);
+	}
+	
+	
+}
+
+Note:
+Stack - > LIFO (Last In First Out)
+Heap - > Objects are created inside heap memory
+Garbage Collector - > Manages Memory to avoid overflow of memory by constantly removing objects that is not is use from heap memory
+
+Heap and stack memory
+#####################
+
+
+###############
+methods in java
+###############
+1. void keyword: A void method cannot return any value
+
+Example 1:
+----------
+public class C {
+	public static void main(String[] args) {
+		
+	}
+	
+	public void test() {
+		return 100;//Error
+	}
+}
+
+Example :
+-----------
+public class C {
+	public static void main(String[] args) {
+		C c1 = new C();
+		int x = c1.test();
+		System.out.println(x);
+	}
+	
+	public int test() {
+		return 100;
+	}
+}
+Output: 100
+
+Example:
+----------
+public class C {
+	public static void main(String[] args) {
+		C c1 = new C();
+		String x = c1.test();
+		System.out.println(x);
+	}
+	
+	public String test() {
+		return "mike";
+	}
+}
+
+return keyword versus return "value"
+#####################################
+
+return keyword:
+-> A method has to be void
+-> It is optional
+-> it will return control to method calling statement
+
+Example:
+-------
+
+public class C {
+	public static void main(String[] args) {
+	  C c1 = new C();
+	  c1.test();
+	}
+	
+	public void test() {
+		System.out.println(100);
+		return;
+	}
+}
+Output: 100
+
+Note: if we write code after return keyword, then that code will 100% not run. This error is called as unreachable code error
+
+Example:
+public class C {
+	public static void main(String[] args) {
+	  C c1 = new C();
+	  c1.test();
+	}
+	
+	public void test() {
+		System.out.println(100);
+		return;
+		System.out.println(200);
+	}
+}
+Output: unreachable code error
+
+return "value"
+---------------
+-> The method has to be not a void method
+-> It is mandatory to use return "value" statement inside not a void method
+-> It will return control and value to method calling statement
+
+Example:
+public class C {
+	public static void main(String[] args) {
+	 
+	}
+	
+	public int test() {//Error
+		
+	}
+}
+Output: Error because return "value" statement is missing inside test method
+
+
+Example:
+public class C {
+	public static void main(String[] args) {
+	 
+	}
+	
+	public int test() {
+		return 100;
+		System.out.println(300);
+	}
+}
+Output: Unreachable code error
+
+Method Arguments
+##################
+-> Using method arguments we supply values to method when we are calling it
+-> The method argument is a local variable
+-> arguments inside the method values that you supply to the method should match
+
+Example:
+-------
+public class C {
+	public static void main(String[] args) {
+	  C c1 = new C();
+	  c1.test(100);
+	}
+	
+	public void test(int x) {
+		System.out.println(x);
+	}
+}
+
+Example:
+--------
+public class C {
+	public static void main(String[] args) {
+	  C c1 = new C();
+	  c1.test(100,"mike");
+	}
+	
+	public void test(int x,String y) {
+		System.out.println(x);
+	}
+}
+
+Note: When method argument type is Object, then we can supply any kind of value to it
+
+Example:
+--------
+public class C {
+	public static void main(String[] args) {
+	  C c1 = new C();
+	  c1.test('a');
+	}
+	
+	public void test(Object x) {
+		System.out.println(x);
+	}
+}
+
+Example:
+public class C {
+	public static void main(String[] args) {
+	  C c1 = new C();
+	  c1.test("mike",100,200,300,400);
+	}
+	
+	public void test(String y, int... x) {
+		System.out.println(x[0]);
+		System.out.println(x[1]);
+		System.out.println(x[2]);
+		System.out.println(x[3]);
+		System.out.println(y);
+	}
+}
+Output:
+100
+200
+300
+400
+mike
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
